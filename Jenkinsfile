@@ -27,8 +27,9 @@ pipeline {
           script {
             try {
               bat("C:\\snyk\\snyk-win.exe  container test deadsec2511/testeb")
-            } catch (err) {
-              echo err.getMessage()
+            } catch (Exception e) {
+              echo "Snyk container test failed: ${e.getMessage()}"
+              throw e
             }
           }
         }
